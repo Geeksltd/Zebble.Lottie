@@ -1,4 +1,4 @@
-﻿namespace Zebble.Lottie
+﻿namespace Zebble
 {
 #if ANDROID
     [Android.Runtime.Preserve]

@@ -1,4 +1,4 @@
-﻿namespace Zebble.Lottie
+﻿namespace Zebble
 {
     using System.ComponentModel;
     using System.Threading.Tasks;
