@@ -34,17 +34,17 @@
                 Player = new LottieAnimationView(UIRuntime.CurrentActivity);
                 View = (LottieView)renderer.View;
                 // It is possible that this section would be deleted
-                var ass = UIRuntime.CurrentActivity.GetType().Assembly;
+                var assembly = UIRuntime.CurrentActivity.GetType().Assembly;
                 var resource = View.AnimationJsonFile.Replace("/", ".");
 
-                var name = ass.GetManifestResourceNames().FirstOrDefault(x => x.EndsWith(resource));
-                var str = ass.ReadEmbeddedTextFile(name, System.Text.Encoding.UTF8).Trim();
+                var name = assembly.GetManifestResourceNames().FirstOrDefault(x => x.EndsWith(resource));
+                var str = assembly.ReadEmbeddedTextFile(name, System.Text.Encoding.UTF8).Trim();
                 
 
                 //Loop = RepeatCount, SetMinProgress = From, SetMaxProgress = To, Speed=PlayBackRate
                 //Reference: https://github.com/airbnb/lottie-android/blob/master/lottie/src/main/java/com/airbnb/lottie/LottieAnimationView.java
                 var reader = new JsonReader(new Java.IO.StringReader(str));
-                Player.SetAnimation(reader,"jsonKey");
+                Player.SetAnimationFromJson(reader.ToString(), "jsonKey");
                 View.OnPlay.Handle(() => Player.PlayAnimation());
                 View.OnPause.Handle(() => Player.PauseAnimation());
                 View.OnResume.Handle(() => Player.ResumeAnimation());
@@ -56,8 +56,6 @@
                     Player.RepeatCount = View.Loop ? 1 : 0;
                     Player.PlayAnimation();
                 });
-                Player.PauseAnimation();
-
                 return Player;
             }
             catch (Exception ex)
