@@ -5,6 +5,7 @@
     using System.IO;
     using System.Security.Cryptography;
     using System.Threading.Tasks;
+    using Android.Animation;
     using Android.App;
     using Android.OS;
     using Android.Runtime;
@@ -43,11 +44,11 @@
 
                 //Loop = RepeatCount, SetMinProgress = From, SetMaxProgress = To, Speed=PlayBackRate
                 //Reference: https://github.com/airbnb/lottie-android/blob/master/lottie/src/main/java/com/airbnb/lottie/LottieAnimationView.java
-                var reader = new JsonReader(new Java.IO.StringReader(str));
-                Player.SetAnimationFromJson(reader.ToString(), "jsonKey");
+                Player.SetAnimationFromJson(str, "jsonKey");
                 View.OnPlay.Handle(() => Player.PlayAnimation());
                 View.OnPause.Handle(() => Player.PauseAnimation());
                 View.OnResume.Handle(() => Player.ResumeAnimation());
+
                 View.OnPropertyChanged.Handle(() =>
                 {
                     Player.Speed = View.PlayBackRate;
@@ -56,6 +57,9 @@
                     Player.RepeatCount = View.Loop ? 1 : 0;
                     Player.PlayAnimation();
                 });
+                if (View.Loop)
+                    Player.RepeatCount = ValueAnimator.Infinite;
+                Player.PlayAnimation();
                 return Player;
             }
             catch (Exception ex)
