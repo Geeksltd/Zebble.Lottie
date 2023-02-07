@@ -44,7 +44,7 @@
 
                 //Loop = RepeatCount, SetMinProgress = From, SetMaxProgress = To, Speed=PlayBackRate
                 //Reference: https://github.com/airbnb/lottie-android/blob/master/lottie/src/main/java/com/airbnb/lottie/LottieAnimationView.java
-                Player.SetAnimationFromJson(str, "jsonKey");
+                Player.SetAnimationFromJson(str, name);
                 View.OnPlay.Handle(() => Player.PlayAnimation());
                 View.OnPause.Handle(() => Player.PauseAnimation());
                 View.OnResume.Handle(() => Player.ResumeAnimation());
