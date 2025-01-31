@@ -1,71 +1,76 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.44">
-  <PropertyGroup>
-    <TargetFrameworks>net8.0-android;net8.0-ios</TargetFrameworks>
-	  <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);net8.0-windows10.0.19041</TargetFrameworks>
-    <AssemblyName>Zebble.Lottie</AssemblyName>
-    <RootNamespace>Zebble</RootNamespace>
-    <PackageId>Zebble.Lottie</PackageId>
-    <Product>$(AssemblyName) ($(TargetFramework))</Product>
-    <Version>2.1.1.0</Version>
-    <PackOnBuild>true</PackOnBuild>
-    <NeutralLanguage>en</NeutralLanguage>
-    <DefineConstants>$(DefineConstants)</DefineConstants>
-    <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
-    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <LangVersion>latest</LangVersion>
-    <DebugType>portable</DebugType>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/Geeksltd/Zebble.Lottie/master/Zebble-LicenseAgreement.txt</PackageLicenseUrl>
-    <PackageProjectUrl>https://nuget.org/packages/Zebble.Carousel/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Geeksltd/Zebble.Lottie/</RepositoryUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/Geeksltd/Zebble.Lottie/master/icon.png</PackageIconUrl>
-    <PackageTags>xamarin, windows, ios, android, zebble</PackageTags>
-    <Title>Zebble.Carousel</Title>
-    <Description>A plugin to render Adobe AfterEffects animation in Zebble apps</Description>
-    <PackageReleaseNotes>Minor fixes</PackageReleaseNotes>
-    <Owners>Geeks Ltd</Owners>
-    <Authors>Geeks Ltd</Authors>
-    <Copyright>Geeks Ltd 2024, All rights reserved.</Copyright>
-    <DisableExtraReferences>true</DisableExtraReferences>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-  <PropertyGroup Condition=" $(TargetFramework.Contains('windows')) ">
-	<RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
-    <DefineConstants>$(DefineConstants);WINUI</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" $(TargetFramework.Contains('android')) ">
-    <DefineConstants>$(DefineConstants);ANDROID</DefineConstants>
-    <AndroidUseIntermediateDesignerFile>false</AndroidUseIntermediateDesignerFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" $(TargetFramework.Contains('ios')) ">
-    <DefineConstants>$(DefineConstants);IOS</DefineConstants>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="Shared\**\*.cs" />
-  </ItemGroup>
-  <ItemGroup Condition=" $(DefineConstants.Contains('WINUI')) ">
-    <PackageReference Include="SkiaSharp.Views.WinUI" Version="3.0.0-preview.4.1" />
-    <Compile Include="WinUI\**\*.cs" />
-  </ItemGroup>
-  <ItemGroup Condition=" $(DefineConstants.Contains('ANDROID')) ">
-    <PackageReference Include="SkiaSharp.Views" Version="3.0.0-preview.4.1" />
-    <Compile Include="Android\**\*.cs" />
-  </ItemGroup>
-  <ItemGroup Condition=" $(DefineConstants.Contains('IOS')) ">
-    <PackageReference Include="SkiaSharp.Views" Version="3.0.0-preview.4.1" />
-    <Compile Include="iOS\**\*.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove=".gitignore" />
-    <None Remove="icon.png" />
-    <None Remove="README.md" />
-    <None Remove="Zebble-LicenseAgreement.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Zebble" Version="5.1.2" />
-    <PackageReference Include="SkiaSharp.Skottie" Version="3.0.0-preview.4.1" />
-  </ItemGroup>
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Running)'=='local'">
-    <Exec Command="update-local-nuget-cache $(TargetDir)" />
-  </Target>
+	<PropertyGroup>
+		<TargetFrameworks>net9.0-android;net9.0-ios</TargetFrameworks>
+		<TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);net9.0-windows10.0.26100</TargetFrameworks>
+		<AssemblyName>Zebble.Lottie</AssemblyName>
+		<RootNamespace>Zebble</RootNamespace>
+		<PackageId>Zebble.Lottie</PackageId>
+		<Product>$(AssemblyName) ($(TargetFramework))</Product>
+		<Version>2.1.2.0</Version>
+		<PackOnBuild>true</PackOnBuild>
+		<NeutralLanguage>en</NeutralLanguage>
+		<DefineConstants>$(DefineConstants)</DefineConstants>
+		<UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+		<LangVersion>latest</LangVersion>
+		<DebugType>portable</DebugType>
+		<PackageLicenseUrl>https://raw.githubusercontent.com/Geeksltd/Zebble.Lottie/master/Zebble-LicenseAgreement.txt</PackageLicenseUrl>
+		<PackageProjectUrl>https://nuget.org/packages/Zebble.Carousel/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Geeksltd/Zebble.Lottie/</RepositoryUrl>
+		<PackageIconUrl>https://raw.githubusercontent.com/Geeksltd/Zebble.Lottie/master/icon.png</PackageIconUrl>
+		<PackageTags>xamarin, windows, ios, android, zebble</PackageTags>
+		<Title>Zebble.Carousel</Title>
+		<Description>A plugin to render Adobe AfterEffects animation in Zebble apps</Description>
+		<PackageReleaseNotes>Minor fixes</PackageReleaseNotes>
+		<Owners>Geeks Ltd</Owners>
+		<Authors>Geeks Ltd</Authors>
+		<Copyright>Geeks Ltd 2024, All rights reserved.</Copyright>
+		<DisableExtraReferences>true</DisableExtraReferences>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
+	<PropertyGroup Condition=" $(TargetFramework.Contains('net9.0-windows')) ">
+		<RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+		<DefineConstants>$(DefineConstants);UWP</DefineConstants>
+		<UseUwp>true</UseUwp>
+	</PropertyGroup>
+	<PropertyGroup Condition=" $(TargetFramework.Contains('android')) ">
+		<DefineConstants>$(DefineConstants);ANDROID</DefineConstants>
+		<AndroidUseIntermediateDesignerFile>false</AndroidUseIntermediateDesignerFile>
+	</PropertyGroup>
+	<PropertyGroup Condition=" $(TargetFramework.Contains('ios')) ">
+		<DefineConstants>$(DefineConstants);IOS</DefineConstants>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="Shared\**\*.cs" />
+	</ItemGroup>
+	<ItemGroup Condition=" $(DefineConstants.Contains('UWP')) ">
+		<Compile Include="UWP\**\*.cs" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.250108002" IncludeAssets="build" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.2.0"/>
+		<Reference Include="SkiaSharp.Views.UWP">
+			<HintPath>libs\SkiaSharp.Views.UWP.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup Condition=" $(DefineConstants.Contains('ANDROID')) ">
+		<PackageReference Include="SkiaSharp.Views" Version="3.116.1" />
+		<Compile Include="Android\**\*.cs" />
+	</ItemGroup>
+	<ItemGroup Condition=" $(DefineConstants.Contains('IOS')) ">
+		<PackageReference Include="SkiaSharp.Views" Version="3.116.1" />
+		<Compile Include="iOS\**\*.cs" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove=".gitignore" />
+		<None Remove="icon.png" />
+		<None Remove="README.md" />
+		<None Remove="Zebble-LicenseAgreement.txt" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Zebble" Version="5.1.5" />
+		<PackageReference Include="SkiaSharp.Skottie" Version="3.116.1" />
+	</ItemGroup>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Running)'=='local'">
+		<Exec Command="update-local-nuget-cache $(TargetDir)" />
+	</Target>
 </Project>

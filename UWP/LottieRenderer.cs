@@ -2,9 +2,10 @@
 {
     using System.ComponentModel;
     using System.Threading.Tasks;
-    using PlatformView = Microsoft.UI.Xaml.FrameworkElement;
-    using SkiaSharp.Views.Windows;
+    using PlatformView = Windows.UI.Xaml.FrameworkElement;
+    using SkiaSharp.Views.UWP;
     using System;
+    using SkiaSharp.Views.Windows;
 
     [EditorBrowsable(EditorBrowsableState.Never)]
     class LottieRenderer : INativeRenderer
@@ -49,7 +50,7 @@
             Player?.Dispose();
             Player = null;
 
-			GC.SuppressFinalize(this);
+            GC.SuppressFinalize(this);
         }
 
         class LottiePlayer : SKXamlCanvas
@@ -85,7 +86,7 @@
                 IsDisposed = true;
                 Controller?.Dispose();
                 Controller = null;
-				GC.SuppressFinalize(this);
+                GC.SuppressFinalize(this);
             }
         }
     }
